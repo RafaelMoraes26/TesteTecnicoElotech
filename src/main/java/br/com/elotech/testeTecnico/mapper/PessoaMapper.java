@@ -4,6 +4,7 @@ import br.com.elotech.testeTecnico.domain.Contato;
 import br.com.elotech.testeTecnico.domain.Pessoa;
 import br.com.elotech.testeTecnico.dto.ContatoDto;
 import br.com.elotech.testeTecnico.dto.PessoaDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -13,7 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class PessoaMapper {
 
-
+    @Autowired
+    ContatoMapper contatoMapper;
 
     public Pessoa converterPessoaDtoParaPessoa(PessoaDto pessoaDto) {
         Pessoa pessoa = new Pessoa();
@@ -76,6 +78,7 @@ public class PessoaMapper {
         p1.setNome(pessoaDto.getNome() == null || pessoaDto.getNome().equals("") ? pessoa.getNome() : pessoaDto.getNome());
         p1.setCpf(pessoaDto.getCpf() == null || pessoaDto.getCpf().equals("") ? pessoa.getCpf() : pessoaDto.getCpf());
         p1.setDtNascimento(pessoaDto.getDtNascimento() == null ? pessoa.getDtNascimento() : pessoaDto.getDtNascimento());
+        p1.setLsContatos(pessoaDto.getLsContatos() == null || pessoaDto.getLsContatos().isEmpty() ? pessoa.getLsContatos() : contatoMapper.converterListaContatoDtoParaListaContato(pessoaDto.getLsContatos(), pessoa));
         return p1;
     }
 

@@ -1,6 +1,7 @@
 package br.com.elotech.testeTecnico.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "Contatos")
 @Validated
 @JsonIgnoreProperties(ignoreUnknown = true)
+@EnableAutoConfiguration
 public class Contato {
 
     @Id

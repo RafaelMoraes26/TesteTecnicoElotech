@@ -41,6 +41,19 @@ public class ContatoMapper {
         return contatoDtos;
     }
 
+    public List<Contato> converterListaContatoDtoParaListaContato(List<ContatoDto> lsContatoDto, Pessoa pessoa) {
+        List<Contato> contatos = new ArrayList<>();
+        lsContatoDto.parallelStream().forEach(c1 -> {
+            Contato contato = new Contato();
+            contato.setNome(c1.getNome());
+            contato.setEmail(c1.getEmail());
+            contato.setTelefone(c1.getTelefone());
+            contato.setPessoa(pessoa);
+            contatos.add(contato);
+        });
+        return contatos;
+    }
+
     public Contato atualizarContatoDtoParaContato(ContatoDto contatoDto, Contato contato) {
         Contato c1 = new Contato();
         c1.setNome(contatoDto.getNome() == null || contatoDto.getNome().equals("") ? contato.getNome() : contatoDto.getNome());

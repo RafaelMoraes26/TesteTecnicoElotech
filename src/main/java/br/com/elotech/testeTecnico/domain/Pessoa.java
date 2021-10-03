@@ -2,6 +2,7 @@ package br.com.elotech.testeTecnico.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.br.CPF;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.annotation.Validated;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @Table(name = "Pessoa")
 @Validated
 @JsonIgnoreProperties(ignoreUnknown = true)
+@EnableAutoConfiguration
 public class Pessoa {
 
     @Id
@@ -46,6 +48,11 @@ public class Pessoa {
     }
 
 
+    public Pessoa(String nome, String cpf, LocalDate dtNascimento) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.dtNascimento = dtNascimento;
+    }
 
     public void setIdPessoa(Long id) {
         this.idPessoa = id;
